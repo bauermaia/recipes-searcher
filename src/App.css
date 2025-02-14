@@ -400,6 +400,11 @@ button:hover {
 
     .favorites-button{
         width: 10px;
+        background-color: transparent;
+    }
+
+    .favorite-button:hover{
+        background-color: transparent;
     }
 
     .favorites-button:hover::after {
