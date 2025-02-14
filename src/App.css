@@ -383,9 +383,14 @@ button:hover {
     background-color: var(--vibrant-color) !important;
 }
 
+@media (max-width: 850px){
+    .recipes-container{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 @media (max-width: 600px){
     .recipes-container{
-        display: grid;
         grid-template-columns: repeat(1, 1fr);
     }
 
@@ -394,7 +399,7 @@ button:hover {
     }
 
     .favorites-button{
-        max-width: 1px;
+        max-width: 5px;
     }
 
     .custom-toast{
@@ -402,8 +407,4 @@ button:hover {
     }
 }
 
-@media (max-width: 850px){
-    .recipes-container{
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
+
