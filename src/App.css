@@ -383,13 +383,21 @@ button:hover {
     background-color: var(--vibrant-color) !important;
 }
 
-@media (max-width: 500px){
+@media (max-width: 600px){
     .recipes-container{
         grid-template-columns: repeat(1, 1fr);
     }
 
     h1{
         font-size: var(--h2-font-size);
+    }
+
+    .favorite-button{
+        max-width: 1px;
+    }
+
+    .custom-toast{
+        max-width: 60%;
     }
 }
 
