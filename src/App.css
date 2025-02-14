@@ -399,8 +399,12 @@ button:hover {
     }
 
     .favorites-button{
-        max-width: 10px;
+        width: 10px;
     }
+
+    .favorites-button:hover::after {
+        content: ""; /* No muestra el texto en pantallas pequeñas */
+    }    
 
     .custom-toast{
         max-width: 60%;
