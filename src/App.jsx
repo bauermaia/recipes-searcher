@@ -9,6 +9,7 @@ export function App(){
     const {ingredient, setIngredient, error} = useIngredient()
     const {recipes, error: recipesError, setRecipes} = useRecipes(ingredient)
     const [searchDone, setSearchDone] = useState(false)
+    const [favorites, setFavorites] = useState([])
 
     const handleChange= (event) => {
         const newIngredient=event.target.value
@@ -21,6 +22,11 @@ export function App(){
         setSearchDone(true)
     }
 
+    const handleFavorites =() => {
+        setFavorites( JSON.parse(localStorage.getItem('favorites')) || [])
+    }
+
+    console.log(favorites)
 
 
     return (
@@ -33,7 +39,7 @@ export function App(){
             
             }}/>
         <h1>Ela´s kitchen🍳</h1>
-        <button className='favorites-button'><i className="ri-star-line"></i></button>
+        <button className='favorites-button' onClick={handleFavorites}><i className="ri-star-line"></i></button>
         </header>
         
         <main>
