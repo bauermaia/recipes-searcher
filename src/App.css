@@ -414,6 +414,14 @@ button:hover {
     .custom-toast{
         max-width: 60%;
     }
+
+    .favorite-button{
+        background-color: transparent;
+    }
+
+    .favorite-button:hover{
+        background-color: transparent;
+    }
 }
 
 

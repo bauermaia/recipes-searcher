@@ -45,7 +45,9 @@ export function RecipeModal ({recipe, onClose}) {
     const handleFavorites =()=> {
        const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
 
-       if(!favorites.includes({recipeName, image})) {
+       const isAlreadyFavorite= favorites.some(fav=> fav.recipeName === recipeName)
+
+       if(!isAlreadyFavorite) {
         favorites.push({recipeName, image});
         localStorage.setItem('favorites', JSON.stringify(favorites))
        

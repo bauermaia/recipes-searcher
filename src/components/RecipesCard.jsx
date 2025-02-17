@@ -18,12 +18,13 @@ function useModalRecipe (recipeName, image) {
 
 }
 
-export function RecipeCard({ingredient}) {
-    const {recipes} = useRecipes(ingredient)
+export function RecipeCard({ingredient, recipes: externalRecipes}) {
+    
     const [selectedRecipe, setSelectedRecipe] = useState(null)
     
+    const {recipes} = externalRecipes ? {recipes:externalRecipes} : useRecipes(ingredient)
+
     const handleClick = (recipe) => {
-       console.log(recipe)
         setSelectedRecipe(recipe)      
     }
     

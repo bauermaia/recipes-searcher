@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import './App.css'
 import {useIngredient} from './hooks/useIngredient'
 import { useRecipes } from './hooks/useRecipes'
@@ -10,6 +10,7 @@ export function App(){
     const {recipes, error: recipesError, setRecipes} = useRecipes(ingredient)
     const [searchDone, setSearchDone] = useState(false)
     const [favorites, setFavorites] = useState([])
+    const [showFavorites, setShowFavorites] = useState(false)
 
     const handleChange= (event) => {
         const newIngredient=event.target.value
@@ -23,10 +24,14 @@ export function App(){
     }
 
     const handleFavorites =() => {
-        setFavorites( JSON.parse(localStorage.getItem('favorites')) || [])
+      const savedFavorites=   JSON.parse(localStorage.getItem('favorites')) || [];
+      setFavorites(savedFavorites)
+      setShowFavorites(true)
     }
 
-    console.log(favorites)
+    const handleBackToSearch = () => {
+        setShowFavorites(false);
+    }
 
 
     return (
@@ -36,6 +41,7 @@ export function App(){
             setIngredient(''); 
             setRecipes([]);
             setSearchDone(false)
+            setShowFavorites(false)
             
             }}/>
         <h1>Ela´s kitchen🍳</h1>
@@ -43,7 +49,9 @@ export function App(){
         </header>
         
         <main>
-        <form onSubmit={handleSubmit}>
+            {!showFavorites ? (
+                <>
+                <form onSubmit={handleSubmit}>
             <input type="text" placeholder='tomato, onion, chicken...' value={ingredient} onChange={handleChange}  />
             <button type='submit'>Search</button>
         </form>
@@ -51,6 +59,14 @@ export function App(){
         {recipesError && searchDone &&  <p className='recipe-error'>{recipesError}</p>}
 
        {searchDone && recipes.length > 0 &&  <RecipeCard ingredient={ingredient}/>}
+                </>
+            ) : (
+                <>
+                 <button onClick={handleBackToSearch}>🔙 Back to search</button>
+                 <RecipeCard recipes={favorites} />                
+                </>
+            )}
+        
         </main>
         </>
     )
